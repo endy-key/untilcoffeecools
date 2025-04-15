@@ -24,7 +24,7 @@ export default function Home() {
             Save and see your changes instantly.
           </li>
           <li>
-            untilcoffeecoolsブログの第一歩
+            untilcoffeecoolsブログの第一歩!!
           </li>
         </ol>
 
