@@ -27,6 +27,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+      <header className="bg-gray-100 p-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">untilcoffeecools</h1>
+          <nav className="space-x-4">
+              <a href="/" className="hover:underline">Home</a>
+              <a href="/about" className="hover:underline">About</a>
+              <a href="/categories" className="hover:underline">Categories</a>
+          </nav>
+      </header>
         {children}
       </body>
     </html>
