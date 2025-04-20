@@ -35,6 +35,9 @@ export default function RootLayout({
               <a href="/categories" className="hover:underline">Categories</a>
           </nav>
       </header>
+      <header className="bg-blue-600 text-white py-8 px-6 text-center">
+          <h1 className="text-3xl font-extrabold">Welcome to untilcoffeecools!</h1>
+      </header>
         {children}
       </body>
     </html>
