@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Footer } from "./_components/Footer";
+import { Header } from "./_components/Header";
+import { Nav } from "./_components/Nav";
+import React from "react";
+import styles from "./layout.module.css";
 
 export const metadata: Metadata = {
   title: "untilcoffeecools",
@@ -24,19 +17,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-      <header className="bg-blue-600 text-white py-6 px-6 flex justify-between items-center">
-          <h1 className="text-3xl font-extrabold">untilcoffeecools</h1>
-          <nav className="space-x-4">
-              <Link href="/" className="hover:underline">Home</Link>
-              <Link href="/about" className="hover:underline">About</Link>
-              <Link href="/categories" className="hover:underline">Categories</Link>
-          </nav>
-      </header>
-        {children}
+    <html lang="ja">
+      <body>
+        <div className={styles.container}>
+            <Header />
+            <div className={styles.content}>
+                <Nav />
+                <main className={styles.main}>{children}</main>
+            </div>
+            <Footer />
+        </div>
       </body>
     </html>
   );
