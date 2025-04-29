@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Footer } from "./_components/Footer";
-import { Header } from "./_components/Header";
-import { Nav } from "./_components/Nav";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { Nav } from "@/components/Nav";
 import React from "react";
 import styles from "./layout.module.css";
 
