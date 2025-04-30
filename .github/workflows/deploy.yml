@@ -24,10 +24,8 @@ jobs:
       - name: Create .env.production from secrets
         run: echo "NEXT_PUBLIC_GTM_ID=${{secrets.NEXT_PUBLIC_GTM_ID}}" > .env.production
 
-      - name: Build and Export Next.js app
-        run: |
-          npm run build
-          npm run export
+      - name: Build Next.js app
+        run: npm run build
 
       - name: Upload to S3
         uses: jakejarvis/s3-sync-action@v0.5.1
