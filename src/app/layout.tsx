@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Nav } from "@/components/Nav";
 import React from "react";
 import styles from "./layout.module.css";
+import {GtmScript} from "@/components/Gtm/GtmScript";
 
 export const metadata: Metadata = {
   title: "untilcoffeecools",
@@ -18,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+          <GtmScript/>
+      </head>
       <body>
         <div className={styles.container}>
             <Header />
