@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { Nav } from "@/components/Nav";
 import React from "react";
 import styles from "./layout.module.css";
-import {GtmScript} from "@/components/Gtm/GtmScript";
+import { GtmScript } from "@/components/Gtm/GtmScript";
 
 export const metadata: Metadata = {
-  title: "untilcoffeecools",
+  title: "until coffee cools",
   description: "コーヒーが冷めるまで",
 };
 
@@ -20,16 +19,17 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-          <GtmScript/>
+        <GtmScript />
       </head>
       <body>
-        <div className={styles.container}>
+        <div className="flex flex-col min-h-screen bg-gray-100">
+          <div className="sticky top-0 z-50 bg-gray-100">
             <Header />
-            <div className={styles.content}>
-                <Nav />
-                <main className={styles.main}>{children}</main>
-            </div>
-            <Footer />
+          </div>
+          <div className="flex flex-1">
+            <main className="flex-1 p-6">{children}</main>
+          </div>
+          <Footer />
         </div>
       </body>
     </html>
