@@ -15,8 +15,7 @@ export function Header() {
                         </span>
                     </div>
                     {/* 中央のサイトタイトル */}
-                    {/* カフェ風のスタイルを適用 */}
-                    <span className="text-3xl font-serif font-semibold text-yellow-700 tracking-wider italic">
+                    <span className="text-3xl font-caveat font-bold text-yellow-700 tracking-wider">
                         until coffee cools
                     </span>
                     {/* 右側のアイコン群 */}

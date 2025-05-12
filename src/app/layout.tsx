@@ -4,6 +4,14 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import React from "react";
 import { GtmScript } from "@/components/Gtm/GtmScript";
+import { Caveat } from "next/font/google";
+
+const caveat = Caveat({ // インスタンスを作成
+  subsets: ['latin'], // 必要に応じてサブセットを指定
+  display: 'swap', // フォントの表示戦略 (FOUTを防ぐためswapが一般的)
+  // weight: ['400', '500', '600', '700'], // 可変フォントでない場合は、必要なウェイトを指定
+  variable: '--font-caveat' // Tailwind CSSでCSS変数として使う場合
+});
 
 export const metadata: Metadata = {
   title: "until coffee cools",
@@ -16,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={caveat.className}>
       <head>
         <GtmScript />
       </head>
