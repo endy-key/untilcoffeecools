@@ -14,16 +14,31 @@ export function Header() {
                             ホーム
                         </span>
                     </div>
-
                     {/* 中央のサイトタイトル */}
                     {/* カフェ風のスタイルを適用 */}
                     <span className="text-3xl font-serif font-semibold text-yellow-700 tracking-wider italic">
                         until coffee cools
                     </span>
-                    {/* 右端のホームロゴ (トップページへのリンク) */}
-                    <Link href="/" className="text-base font-medium text-gray-700 hover:text-yellow-700 transition-colors">
-                        ホーム
-                    </Link>
+                    {/* 右側のアイコン群 */}
+                    <div className="flex items-center space-x-4">
+                        {/* ホームアイコン (トップページへのリンク) */}
+                        <Link href="/" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="ホーム">
+                            <Image
+                                src="/home_icon.svg"
+                                alt="ホーム"
+                                width={32}
+                                height={32}
+                            />
+                        </Link>                        {/* 投稿一覧へのリンク */}
+                        <Link href="/posts" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="投稿一覧">
+                            <Image
+                                src="/list_iconー.svg" // アイコンのパス
+                                alt="投稿一覧"
+                                width={32}
+                                height={32}
+                            />
+                        </Link>
+                    </div>
                 </div>
                 {/* ヒーローイメージやナビゲーションなど、他の要素をここに配置 */}
                 {/* 現在の eyecatch.jpg はヒーローイメージとして別の場所に配置するか、

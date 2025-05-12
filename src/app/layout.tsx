@@ -3,7 +3,6 @@ import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import React from "react";
-import styles from "./layout.module.css";
 import { GtmScript } from "@/components/Gtm/GtmScript";
 
 export const metadata: Metadata = {
