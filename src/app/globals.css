@@ -24,6 +24,4 @@ body {
   /* CSS変数を使用 */
   color: var(--foreground);
   /* CSS変数を使用 */
-  /* font-family は next/font と tailwind.config.js で管理されるため、ここでは削除またはコメントアウトを推奨 */
-  /* font-family: Arial, Helvetica, sans-serif; */
 }
