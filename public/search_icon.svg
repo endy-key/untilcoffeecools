@@ -1,0 +1,6 @@
+<svg class="search-icon" width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#5C4033" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- レンズ -->
+  <circle cx="28" cy="28" r="12" />
+  <!-- 持ち手 -->
+  <line x1="36" y1="36" x2="48" y2="48" />
+</svg>
