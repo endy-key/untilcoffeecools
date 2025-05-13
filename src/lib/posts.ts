@@ -31,7 +31,7 @@ function generateExcerpt(content: string, maxLines: number = 3, maxLength: numbe
     }
 
     // 簡単なMarkdown記法を除去
-    let plainText = content
+    const plainText = content
         .replace(/^#+\s+/gm, '') // 見出し
         .replace(/\[(.*?)\]\(.*?\)/g, '$1') // リンク
         .replace(/`{1,3}(.*?)`{1,3}/g, '$1') // コード
