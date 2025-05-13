@@ -7,7 +7,7 @@ export default function Home() {
                     key={id}
                     className="bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition"
                 >
-                    <h2 className="text-xl font-medium mb-2">記事タイトルのサンプル {id}</h2>
+                    <h2 className="text-xl text-[#6b6b6b] font-medium mb-2">記事タイトルのサンプル {id}</h2>
                     <p className="text-sm text-[#6b6b6b]">
                         ここに記事の冒頭文が入ります。気になったこと、ふと考えたこと、そんな日々のメモ。
                     </p>
