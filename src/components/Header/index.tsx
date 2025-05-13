@@ -5,8 +5,8 @@ export function Header() {
     return (
         <header className="py-1 px-4 md:px-6">
             <div className="container mx-auto"> {/* justify-center を削除し、子のdivでレイアウトを制御 */}
-                {/* ヘッダーコンテンツ全体を横いっぱいに広げ、要素を配置 */}
-                <div className="flex items-baseline justify-between w-full">
+                {/* ヘッダーコンテンツ全体を横いっぱいに広げ、要素を垂直中央揃えで配置 */}
+                <div className="flex items-center justify-between w-full"> {/* items-baseline を items-center に変更 */}
                     {/* 左側のスペーサー: タイトルを中央に配置するため、右側の「ホーム」リンクと同じ幅の不可視要素を配置 */}
                     <div className="invisible">
                         {/* 「ホーム」リンクと同じスタイルを適用して幅を確保 */}
