@@ -19,6 +19,11 @@
   }
 }
 
+html {
+  scrollbar-gutter: stable;
+  /* もしくは stable both-edges; */
+}
+
 body {
   background-color: var(--background);
   /* CSS変数を使用 */

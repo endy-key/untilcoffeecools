@@ -1,16 +1,37 @@
-export default function Home() {
+import Link from 'next/link';
+import { getAllPosts } from '@/lib/posts'; // getAllPosts関数をインポート
+
+export default async function Home() { // async関数に変更
+    const allPosts = await getAllPosts();
+
+    // 記事を日付の新しい順にソート
+    const sortedPosts = allPosts.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+
+    // 最新5件の記事を取得
+    const latestPosts = sortedPosts.slice(0, 5);
+
     return (
         <section className="max-w-3xl mx-auto px-4 py-8 space-y-8">
-            {/* 記事カード（サンプル） */}
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((id) => (
+            <h1 className="text-3xl font-bold mb-6 text-gray-700">最新の記事</h1>
+            {latestPosts.map((post) => (
                 <article
-                    key={id}
+                    key={post.slug} // 記事のslugをkeyとして使用
                     className="bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition"
                 >
-                    <h2 className="text-xl text-[#6b6b6b] font-medium mb-2">記事タイトルのサンプル {id}</h2>
-                    <p className="text-sm text-[#6b6b6b]">
-                        ここに記事の冒頭文が入ります。気になったこと、ふと考えたこと、そんな日々のメモ。
-                    </p>
+                    <Link href={`/posts/${post.slug}`}>
+                        <h2 className="text-xl text-blue-600 hover:underline font-medium mb-2">
+                            {post.title} {/* 記事のタイトルを表示 */}
+                        </h2>
+                    </Link>
+                    <p className="text-sm text-gray-500 mb-1">{post.date}</p> {/* 記事の日付を表示 */}
+                    {/* 記事の概要を表示 */}
+                    {post.excerpt && (
+                        <p className="text-sm text-gray-600 mt-1 line-clamp-2"> {/* line-clamp-2で最大2行表示 */}
+                            {post.excerpt}
+                        </p>
+                    )}
                 </article>
             ))}
         </section>
