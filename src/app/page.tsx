@@ -2,7 +2,7 @@ export default function Home() {
     return (
         <section className="max-w-3xl mx-auto px-4 py-8 space-y-8">
             {/* 記事カード（サンプル） */}
-            {[1, 2, 3].map((id) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((id) => (
                 <article
                     key={id}
                     className="bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition"

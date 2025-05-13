@@ -3,7 +3,7 @@ import Link from "next/link"; // ロゴをトップページへのリンクに�
 
 export function Header() {
     return (
-        <header className="py-6 px-4 md:px-6 border-b border-gray-300">
+        <header className="py-1 px-4 md:px-6">
             <div className="container mx-auto"> {/* justify-center を削除し、子のdivでレイアウトを制御 */}
                 {/* ヘッダーコンテンツ全体を横いっぱいに広げ、要素を配置 */}
                 <div className="flex items-baseline justify-between w-full">
@@ -23,30 +23,22 @@ export function Header() {
                         {/* ホームアイコン (トップページへのリンク) */}
                         <Link href="/" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="ホーム">
                             <Image
-                                src="/home_icon.svg"
+                                src="/home.svg"
                                 alt="ホーム"
-                                width={32}
-                                height={32}
+                                width={24}
+                                height={24}
                             />
                         </Link>                        {/* 投稿一覧へのリンク */}
                         <Link href="/posts" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="投稿一覧">
                             <Image
-                                src="/list_iconー.svg" // アイコンのパス
+                                src="/article.svg" // アイコンのパス
                                 alt="投稿一覧"
-                                width={32}
-                                height={32}
+                                width={24}
+                                height={24}
                             />
                         </Link>
                     </div>
                 </div>
-                {/* ヒーローイメージやナビゲーションなど、他の要素をここに配置 */}
-                {/* 現在の eyecatch.jpg はヒーローイメージとして別の場所に配置するか、
-                    ヘッダー内に残す場合は、スクロール時の挙動を考慮して調整します。
-                    もし eyecatch.jpg がロゴそのものだった場合は、このテキストロゴと置き換える形になります。
-                */}
-                {/* <div className="flex items-center justify-center">
-                    <Image src={"/eyecatch.jpg"} alt={"untilcoffeecools eyecatch"} width={500} height={150} priority />
-                </div> */}
             </div>
         </header>
     );
