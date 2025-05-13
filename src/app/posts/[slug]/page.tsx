@@ -1,4 +1,4 @@
-import {getAllPosts, getPostData} from '@/lib/posts';
+import { getAllPosts, getPostData } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
     }>;
 };
 
-export async function generateStaticParams(): Promise<{ slug: string}[]> {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
     const posts = await getAllPosts();
 
     return posts.map((post) => ({
@@ -17,15 +17,15 @@ export async function generateStaticParams(): Promise<{ slug: string}[]> {
 
 export default async function PostPage({ params }: Props) {
     try {
-        const {slug} = await params;
+        const { slug } = await params;
         const post = await getPostData(slug);
 
         return (
             <main className="max-w-2xl mx-auto p-4">
-                <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
+                <h1 className="text-3xl text-gray-700 font-bold mb-2">{post.title}</h1>
                 <p className="text-sm text-gray-500 mb-6">{post.date}</p>
                 <article
-                    className="prose"
+                    className="prose text-gray-700"
                     dangerouslySetInnerHTML={{ __html: post.contentHtml }}
                 />
             </main>
