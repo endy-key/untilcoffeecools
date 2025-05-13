@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Image from "next/image"; // next/image から Image をインポート
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import React from "react";
@@ -30,8 +31,18 @@ export default function RootLayout({
       </head>
       <body>
         <div className="flex flex-col min-h-screen bg-gray-100">
-          <div className="sticky top-0 z-50 bg-gray-100">
+          <div className="sticky top-0 z-50 bg-gray-100 shadow-md"> {/* Headerをラップしてstickyにする */}
             <Header />
+          </div>
+          <div className="flex items-center justify-center">
+            <Image
+              src={"/heroImage.jfif"}
+              alt={"untilcoffeecools heroImage"}
+              width={1200} // 画像の実際の幅 (ピクセル単位) を指定してください
+              height={400} // 画像実際の高さ (ピクセル単位) を指定してください
+              priority // LCP要素の可能性が高いため、priorityは適切です
+              className="w-full h-auto max-w-full" // コンテナ幅に合わせてレスポンシブに表示
+            />
           </div>
           <div className="flex flex-1">
             <main className="flex-1 p-6">{children}</main>
