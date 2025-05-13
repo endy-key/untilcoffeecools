@@ -36,7 +36,7 @@ export default function RootLayout({
           </div>
           <div className="flex items-center justify-center">
             <Image
-              src={"/heroImage.jfif"}
+              src={"/heroImage.jpg"}
               alt={"untilcoffeecools heroImage"}
               width={1200} // 画像の実際の幅 (ピクセル単位) を指定してください
               height={400} // 画像実際の高さ (ピクセル単位) を指定してください
