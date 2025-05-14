@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link"; // ロゴをトップページへのリンクにする場合
 
-export function Header() {
+export function Header({ className }: { className: string }) {
     return (
         <header className="py-1 px-4 md:px-6">
             <div className="container mx-auto"> {/* justify-center を削除し、子のdivでレイアウトを制御 */}
@@ -15,7 +15,7 @@ export function Header() {
                         </span>
                     </div>
                     {/* 中央のサイトタイトル */}
-                    <span className="text-3xl font-caveat font-bold text-yellow-700 tracking-wider">
+                    <span className={`text-3xl font-caveat font-bold text-yellow-700 tracking-wider ${className}`}>
                         until coffee cools
                     </span>
                     {/* 右側のアイコン群 */}
