@@ -3,12 +3,13 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     content: [
-        "./src/**/*.{js,ts,jsx,tsx,mdx}",
+        './src/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
         extend: {
             fontFamily: {
-                'caveat': ['var(--font-caveat)'], // 修正箇所
+                sans: ['var(--font-noto-sans-jp)', ...defaultTheme.fontFamily.sans], // デフォルトフォント
+                caveat: ['var(--font-caveat)'], // Caveatフォントはそのまま
             },
         },
     },

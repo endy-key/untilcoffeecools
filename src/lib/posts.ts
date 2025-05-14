@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
@@ -60,6 +61,7 @@ export async function getPostData(slug: string): Promise<PostData> {
     const frontmatter = matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[] };
 
     const processedContent = await remark()
+        .use(remarkGfm)
         .use(html)
         .process(matterResult.content);
     const contentHtml = processedContent.toString();
