@@ -2,9 +2,9 @@ import { getAllPosts, getPostData } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 
 type Props = {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 };
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
