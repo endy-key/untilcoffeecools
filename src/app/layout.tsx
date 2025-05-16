@@ -5,7 +5,6 @@ import { Header } from "@/components/Header";
 import React from "react";
 import { GtmScript } from "@/components/Gtm/GtmScript";
 import { Caveat, Noto_Sans_JP } from "next/font/google";
-import { ProfileCard } from "@/components/ProfileCard";
 
 const caveat = Caveat({
   subsets: ['latin'], // 必要に応じてサブセットを指定
