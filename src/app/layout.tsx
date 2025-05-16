@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import React from "react";
 import { GtmScript } from "@/components/Gtm/GtmScript";
 import { Caveat, Noto_Sans_JP } from "next/font/google";
+import { ProfileCard } from "@/components/ProfileCard";
 
 const caveat = Caveat({
   subsets: ['latin'], // 必要に応じてサブセットを指定
@@ -36,13 +37,25 @@ export default function RootLayout({
         <GtmScript />
       </head>
       <body className={notoSansJP.className}>
-        <div className="flex flex-col min-h-screen bg-gray-100 text-gray-700">
+        {/* ページ全体のコンテナを縦方向のフレックスコンテナに変更 */}
+        <div className="flex min-h-screen flex-col bg-gray-100 text-gray-700">
+          {/* ヘッダー */}
           <div className="sticky top-0 z-50 bg-gray-100 shadow-md">
             <Header className={caveat.className} />
           </div>
+
+          {/* メインコンテンツと右サイドバーを横並びにするコンテナ */}
+          {/* このコンテナがヘッダーとフッター以外の残りの高さを占める (flex-1) */}
           <div className="flex flex-1">
-            <main className="flex-1">{children}</main>
+            {/* 各ページのコンテンツ */}
+            {/* メインコンテンツが利用可能な幅を占める (flex-1) */}
+            <main className="flex-1 p-6">{children}</main>
+            {/* 右サイドバー (ProfileCard)
+            <aside className="hidden md:block w-64 flex-shrink-0 p-6 bg-gray-100 fixed top-0 right-0 h-screen w-64">
+              <ProfileCard />
+            </aside> */}
           </div>
+          {/* フッター */}
           <Footer />
         </div>
       </body>
