@@ -53,7 +53,7 @@ export default async function Home() { // async関数に変更
                 </section>
                 {/* ProfileCardを配置するサイドバー (ページ内) */}
                 {/* モバイルでは通常フロー、md以上では絶対配置で右に浮かせる */}
-                <aside className="w-full mt-8 md:absolute md:top-0 md:left-[calc(50%+26rem)] md:w-64 md:mt-0">
+                <aside className="w-full mt-8 md:absolute md:top-0 md:left-[calc(50%+30rem)] md:w-64 md:mt-0">
                     <ProfileCard />
                 </aside>
             </div>
