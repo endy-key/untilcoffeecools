@@ -20,7 +20,7 @@ export function Header({ className }: { className: string }) {
                     </span>
                     {/* 右側のアイコン群 */}
                     <div className="flex items-center space-x-4">
-                        {/* ホームアイコン (トップページへのリンク) */}
+                        {/* ホームアイコン */}
                         <Link href="/" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="ホーム">
                             <Image
                                 src="/home.svg"
@@ -28,11 +28,21 @@ export function Header({ className }: { className: string }) {
                                 width={24}
                                 height={24}
                             />
-                        </Link>                        {/* 投稿一覧へのリンク */}
+                        </Link>
+                        {/* 投稿一覧アイコン */}
                         <Link href="/posts" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="投稿一覧">
                             <Image
-                                src="/article.svg" // アイコンのパス
+                                src="/article.svg"
                                 alt="投稿一覧"
+                                width={24}
+                                height={24}
+                            />
+                        </Link>
+                        {/* playgroundアイコン */}
+                        <Link href="/playground" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="playground">
+                            <Image
+                                src="/playground.svg"
+                                alt="playground"
                                 width={24}
                                 height={24}
                             />
