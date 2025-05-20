@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts'; // getAllPosts関数をインポート
+import { getAllPosts } from '@/lib/posts';
 import Image from 'next/image';
-import { ProfileCard } from '@/components/ProfileCard'; // ProfileCardをインポート
+import { ProfileCard } from '@/components/ProfileCard';
 
 export default async function Home() { // async関数に変更
     const allPosts = await getAllPosts();
