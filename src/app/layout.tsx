@@ -53,7 +53,7 @@ export default function RootLayout({
             </aside> */}
           </div>
           {/* フッター */}
-          <Footer />
+          <Footer className={caveat.className} />
         </div>
       </body>
     </html>

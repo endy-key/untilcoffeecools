@@ -1,16 +1,24 @@
 'use client';
 import { HomeSvg } from "@/components/Animation/HomeSvg";
+import { PlainHomeSvg } from "@/components/Animation/PlainHomeSvg";
 
 export default function PlaygroundPage() {
     return (
-        <div className="prose">
-            <h1>ソースの実験場</h1>
+        <main className="prose mx-auto">
+            <h1>実験場</h1>
             <p>筆記体アニメーションを動かしたい！</p>
             {/* ここに試したいコンポーネントやロジックを記述できます */}
             {/* HomeSvgコンポーネントを中央に配置 */}
-            <div className="my-8 flex justify-center">
+            <p>Outline stroke</p>
+            <div className="flex justify-center">
                 <HomeSvg />
             </div>
-        </div>
+
+            <p>plain</p>
+            <div className="flex justify-center">
+                <PlainHomeSvg />
+            </div>
+
+        </main>
     );
 }
