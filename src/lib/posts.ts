@@ -2,8 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
-import html from 'remark-html';
 import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeStringify from 'rehype-stringify';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
@@ -20,7 +22,8 @@ export type PostData = PostMeta & {
 };
 
 /**
- * Markdownの本文から概要を生成するヘルパー関数
+ * Markdownの本文から概要を生成するヘル
+ * パー関数
  * @param content Markdownの本文
  * @param maxLines 概要として抽出する最大行数
  * @param maxLength 概要の最大文字数
@@ -62,7 +65,9 @@ export async function getPostData(slug: string): Promise<PostData> {
 
     const processedContent = await remark()
         .use(remarkGfm)
-        .use(html)
+        .use(remarkRehype, { allowDangerousHtml: true }) // remark AST を rehype AST に変換
+        .use(rehypeHighlight) // シンタックスハイライトを適用
+        .use(rehypeStringify, { allowDangerousHtml: true }) // rehype AST を HTML 文字列に変換
         .process(matterResult.content);
     const contentHtml = processedContent.toString();
     const excerpt = frontmatter.excerpt || generateExcerpt(matterResult.content);
