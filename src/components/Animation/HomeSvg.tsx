@@ -20,7 +20,7 @@ export const HomeSvg = () => {
         <svg
             ref={svgRef}
             width="500"
-            height="500"
+            height="200"
             // viewBox="0 0 55 56"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
