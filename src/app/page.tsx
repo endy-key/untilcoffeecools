@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getAllPosts } from '@/lib/posts';
 import Image from 'next/image';
 import { ProfileCard } from '@/components/ProfileCard';
+import { PlainHomeSvg } from '@/components/Animation/PlainHomeSvg'; // PlainHomeSvgを名前付きインポートに変更
 
 export default async function Home() { // async関数に変更
     const allPosts = await getAllPosts();
@@ -16,15 +17,20 @@ export default async function Home() { // async関数に変更
 
     return (
         <>
-            <div className="flex items-center justify-center"> {/* ヒーローイメージのコンテナ */}
+            {/* ヒーローイメージとSVGアニメーションのコンテナ */}
+            <div className="relative flex items-center justify-center"> {/* relativeを追加して子要素の絶対配置の基準にする */}
                 <Image
-                    src={"/heroImage.jpg"}
+                    src={"/heroImage.svg"}
                     alt={"untilcoffeecools heroImage"}
                     width={1200}
                     height={400}
                     priority // LCP要素の可能性が高いため、priorityは適切です
-                    className="w-full h-auto max-w-full" // コンテナ幅に合わせてレスポンシブに表示
+                    className="w-full h-auto max-w-full"
                 />
+                {/* PlainHomeSvgを画像の上にオーバーレイ表示 */}
+                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"> {/* pointer-events-noneでSVGが下の要素のクリックを妨げないようにする */}
+                    <PlainHomeSvg />
+                </div>
             </div>
             {/* メインコンテンツエリア (記事リスト + ProfileCard) */}
             <div className="mt-8 flex flex-col md:flex-row md:justify-center md:gap-8 md:relative"> {/* md:relative を追加 */}
