@@ -21,19 +21,19 @@ export function Header({ className }: { className: string }) {
                     {/* 右側のアイコン群 */}
                     <div className="flex items-center space-x-4">
                         {/* ホームアイコン */}
-                        <Link href="/" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="ホーム">
+                        <Link href="/" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="home">
                             <Image
                                 src="/home.svg"
-                                alt="ホーム"
+                                alt="home"
                                 width={24}
                                 height={24}
                             />
                         </Link>
                         {/* 投稿一覧アイコン */}
-                        <Link href="/posts" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="投稿一覧">
+                        <Link href="/posts" className="flex items-center justify-center hover:opacity-75 transition-opacity" title="記事一覧">
                             <Image
                                 src="/article.svg"
-                                alt="投稿一覧"
+                                alt="記事一覧"
                                 width={24}
                                 height={24}
                             />
