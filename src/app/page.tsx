@@ -54,6 +54,15 @@ export default async function Home() { // async関数に変更
                                     {post.excerpt}
                                 </p>
                             )}
+                            {post.tags && post.tags.length > 0 && (
+                                <div className="mt-2">
+                                    {post.tags.map((tag) => (
+                                        <span key={tag} className="tag-badge">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
                         </article>
                     ))}
                 </section>

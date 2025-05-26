@@ -32,3 +32,15 @@ body {
   color: var(--foreground);
   /* CSS変数を使用 */
 }
+
+.tag-badge {
+  display: inline-block;
+  background-color: #e0e0e0; /* Light gray */
+  color: #333333; /* Dark gray text */
+  padding: 0.25em 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em; /* Added for spacing when tags wrap */
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-weight: 600; /* Semibold, similar to previous Tailwind class */
+}
