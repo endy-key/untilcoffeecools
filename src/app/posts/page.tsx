@@ -21,6 +21,15 @@ export default async function PostsPage() {
                             </h2>
                         </Link>
                         <p className="text-gray-500 text-sm">{post.date}</p>
+                        {post.tags && post.tags.length > 0 && (
+                            <div className="mt-2">
+                                {post.tags.map((tag) => (
+                                    <span key={tag} className="tag-badge">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
                     </li>
                 ))}
             </ul>

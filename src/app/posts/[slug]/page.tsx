@@ -25,6 +25,16 @@ export default async function PostPage({ params }: Props) {
                 <h1 className="text-3xl text-gray-700 font-bold mb-2">{post.title}</h1>
                 <p className="text-sm text-gray-500 mb-6">{post.date}</p>
 
+                {post.tags && post.tags.length > 0 && (
+                    <div className="mb-4">
+                        {post.tags.map((tag) => (
+                            <span key={tag} className="tag-badge">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
                 <article className="prose"
                     dangerouslySetInnerHTML={{ __html: post.contentHtml }}>
                 </article>
