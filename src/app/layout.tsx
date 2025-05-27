@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import React from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import React from "react";
 import { GtmScript } from "@/components/Gtm/GtmScript";
+import ClarityScript from "@/components/Clarity/ClarityScript";
 import { Caveat, Noto_Sans_JP } from "next/font/google";
 
 const caveat = Caveat({
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <GtmScript />
+        <ClarityScript />
       </head>
       <body className={notoSansJP.className}>
         {/* ページ全体のコンテナを縦方向のフレックスコンテナに変更 */}
