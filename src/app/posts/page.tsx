@@ -14,7 +14,7 @@ export default async function PostsPage() {
             <h1 className="text-3xl font-bold mb-6 text-gray-700">記事一覧</h1>
             <ul className="space-y-4">
                 {sortedPosts.map((post) => (
-                    <li key={post.slug} className="border-b pb-2">
+                    <li key={post.slug} className="border-b border-gray-300 py-4">
                         <Link href={`/posts/${post.slug}`}>
                             <h2 className="text-xl font-semibold text-blue-600 hover:underline">
                                 {post.title}
