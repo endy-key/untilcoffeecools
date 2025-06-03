@@ -1,18 +1,21 @@
-"use client";
+'use client'
+import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation' // usePathname をインポート
 
-import React, { ReactNode } from 'react';
-import MotionWrapper from '@/components/Animation/MotionWrapper';
+export default function Template({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname(); // 現在のパスを取得
 
-interface TemplateProps {
-    children: ReactNode;
-}
-
-const Template: React.FC<TemplateProps> = ({ children }) => {
     return (
-        <MotionWrapper>
-            {children}
-        </MotionWrapper>
-    );
-};
-
-export default Template;
+        <AnimatePresence mode="wait"> {/* mode="wait" でアニメーションの重複を防ぐ */}
+            <motion.div
+                key={pathname} // pathname を key として設定
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+            >
+                {children}
+            </motion.div>
+        </AnimatePresence>
+    )
+}
