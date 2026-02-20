@@ -33,6 +33,119 @@ body {
   /* CSS変数を使用 */
 }
 
+/* =============================
+   Hero Section
+   ============================= */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 38vw, 440px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes hero-gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    -50deg,
+    #0f0400,
+    #2a1108,
+    #4a2212,
+    #6b3820,
+    #3c1d0e,
+    #1a0b04
+  );
+  background-size: 400% 400%;
+  animation: hero-gradient 18s ease infinite;
+}
+
+@keyframes steam-rise {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: var(--particle-opacity, 0.15);
+  }
+  35% {
+    transform: translateY(-35%) translateX(7px) scale(1.5);
+    opacity: calc(var(--particle-opacity, 0.15) * 0.85);
+  }
+  70% {
+    transform: translateY(-80%) translateX(-8px) scale(1.2);
+    opacity: calc(var(--particle-opacity, 0.15) * 0.35);
+  }
+  100% {
+    transform: translateY(-135%) translateX(3px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-particle {
+  position: absolute;
+  bottom: 12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    #faf0e6 0%,
+    #d4a880 45%,
+    transparent 72%
+  );
+  filter: blur(2px);
+  animation: steam-rise ease-in-out infinite;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.hero-svg {
+  width: clamp(200px, 26vw, 340px);
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(250, 240, 230, 0.45));
+}
+
+.hero-tagline {
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  color: #c49a6c;
+  letter-spacing: 0.3em;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+  margin: 0;
+}
+
+.hero-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, #f3f4f6);
+  pointer-events: none;
+}
+
+/* =============================
+   Tag Badge
+   ============================= */
+
 .tag-badge {
   display: inline-block;
   background-color: #e0e0e0; /* Light gray */

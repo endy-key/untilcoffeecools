@@ -1,76 +1,71 @@
 import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
 import Image from 'next/image';
-import { ProfileCard } from '@/components/ProfileCard';
-import { PlainHomeSvg } from '@/components/Animation/PlainHomeSvg'; // PlainHomeSvgを名前付きインポートに変更
+import { getAllPosts } from '@/lib/posts';
+import { HeroSection } from '@/components/HeroSection';
+import { Sidebar } from '@/components/Sidebar';
 
-export default async function Home() { // async関数に変更
+export default async function Home() {
     const allPosts = await getAllPosts();
 
-    // 記事を日付の新しい順にソート
     const sortedPosts = allPosts.sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
 
-    // 最新5件の記事を取得
     const latestPosts = sortedPosts.slice(0, 5);
 
     return (
         <>
-            {/* ヒーローイメージとSVGアニメーションのコンテナ */}
-            <div className="relative flex items-center justify-center"> {/* relativeを追加して子要素の絶対配置の基準にする */}
-                <Image
-                    src={"/heroImage.svg"}
-                    alt={"untilcoffeecools heroImage"}
-                    width={1200}
-                    height={400}
-                    priority // LCP要素の可能性が高いため、priorityは適切です
-                    className="w-full h-auto max-w-full"
-                />
-                {/* PlainHomeSvgを画像の上にオーバーレイ表示 */}
-                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"> {/* pointer-events-noneでSVGが下の要素のクリックを妨げないようにする */}
-                    <PlainHomeSvg />
-                </div>
-            </div>
-            {/* メインコンテンツエリア (記事リスト + ProfileCard) */}
-            <div className="mt-8 flex flex-col md:flex-row md:justify-center md:gap-8 md:relative"> {/* md:relative を追加 */}
-                {/* 記事リストセクション */}
-                <section className="space-y-8 md:max-w-3xl"> {/* flex-growを削除し、md以上で最大幅を指定 */}
-                    <h1 className="text-3xl font-bold mb-6 text-gray-700">最新の記事</h1>
-                    {latestPosts.map((post) => (
-                        <article
-                            key={post.slug} // 記事のslugをkeyとして使用
-                            className="bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition"
-                        >
-                            <Link href={`/posts/${post.slug}`}>
-                                <h2 className="text-xl text-blue-600 hover:underline font-medium mb-2">
-                                    {post.title} {/* 記事のタイトルを表示 */}
-                                </h2>
-                            </Link>
-                            <p className="text-sm text-gray-500 mb-1">{post.date}</p> {/* 記事の日付を表示 */}
-                            {/* 記事の概要を表示 */}
-                            {post.excerpt && (
-                                <p className="text-sm text-gray-600 mt-1 line-clamp-2"> {/* line-clamp-2で最大2行表示 */}
-                                    {post.excerpt}
-                                </p>
-                            )}
-                            {post.tags && post.tags.length > 0 && (
-                                <div className="mt-2">
-                                    {post.tags.map((tag) => (
-                                        <span key={tag} className="tag-badge">
-                                            {tag}
-                                        </span>
-                                    ))}
+            <HeroSection />
+
+            {/* ヘッダーと同じ max-w-6xl で x 軸を揃える */}
+            <div className="max-w-6xl mx-auto px-4 md:px-8 py-10 flex items-start gap-6">
+                <section className="flex-1 min-w-0 space-y-6">
+                <h1 className="text-2xl font-bold text-gray-600 flex items-center gap-3">
+                    <span className="inline-block w-1 h-6 bg-amber-700 rounded-full" aria-hidden="true" />
+                    最新の記事
+                </h1>
+                {latestPosts.map((post) => (
+                    <article
+                        key={post.slug}
+                        className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 border border-gray-100 overflow-hidden"
+                    >
+                        <Link href={`/posts/${post.slug}`} className="flex">
+                            {post.thumbnail && (
+                                <div className="relative w-32 shrink-0 sm:w-44">
+                                    <Image
+                                        src={post.thumbnail}
+                                        alt={post.title}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 640px) 128px, 176px"
+                                    />
                                 </div>
                             )}
-                        </article>
-                    ))}
+                            <div className="p-5 flex flex-col justify-center min-w-0">
+                                <h2 className="text-lg text-amber-900 hover:text-amber-700 font-medium mb-1 transition-colors line-clamp-2">
+                                    {post.title}
+                                </h2>
+                                <p className="text-xs text-gray-400 mb-2">{post.date}</p>
+                                {post.excerpt && (
+                                    <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
+                                        {post.excerpt}
+                                    </p>
+                                )}
+                                {post.tags && post.tags.length > 0 && (
+                                    <div className="mt-2">
+                                        {post.tags.map((tag) => (
+                                            <span key={tag} className="tag-badge">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        </Link>
+                    </article>
+                ))}
                 </section>
-                {/* ProfileCardを配置するサイドバー (ページ内) */}
-                {/* モバイルでは通常フロー、md以上では絶対配置で右に浮かせる */}
-                <aside className="w-full mt-8 md:absolute md:top-0 md:left-[calc(50%+30rem)] md:w-64 md:mt-0">
-                    <ProfileCard />
-                </aside>
+                <Sidebar />
             </div>
         </>
     );

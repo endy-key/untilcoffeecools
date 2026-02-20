@@ -13,8 +13,9 @@ export type PostMeta = {
     slug: string;
     title: string;
     date: string;
-    excerpt?: string; // 概要を追加
+    excerpt?: string;
     tags?: string[];
+    thumbnail?: string;
 };
 
 export type PostData = PostMeta & {
@@ -61,7 +62,7 @@ export async function getPostData(slug: string): Promise<PostData> {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     const matterResult = matter(fileContents);
-    const frontmatter = matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[] };
+    const frontmatter = matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[]; thumbnail?: string };
 
     const processedContent = await remark()
         .use(remarkGfm)
@@ -88,7 +89,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
         const fullPath = path.join(postsDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const matterResult = matter(fileContents);
-        const frontmatter = matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[] };
+        const frontmatter = matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[]; thumbnail?: string };
         const excerpt = frontmatter.excerpt || generateExcerpt(matterResult.content);
         return {
             slug,
