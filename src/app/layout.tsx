@@ -41,18 +41,13 @@ export default function RootLayout({
         {/* ページ全体のコンテナを縦方向のフレックスコンテナに変更 */}
         <div className="flex min-h-screen flex-col bg-gray-100 text-gray-700">
           {/* ヘッダー */}
-          <div className="sticky top-0 z-50 bg-gray-100 shadow-md">
+          <div className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-gray-200/60">
             <Header className={caveat.className} />
           </div>
           {/* メインコンテンツと右サイドバーを横並びにするコンテナ */}
           {/* このコンテナがヘッダーとフッター以外の残りの高さを占める (flex-1) */}
           <div className="flex flex-1">
-            {/* 各ページのコンテンツ (メインエリア) */}
-            <main className="flex-1">{children}</main>
-            {/* 右サイドバー (ProfileCard) */}
-            {/* <aside className="hidden md:block w-50 flex-shrink-0 p-6">
-              <ProfileCard />
-            </aside> */}
+            <main className="flex-1 min-w-0">{children}</main>
           </div>
           {/* フッター */}
           <Footer className={caveat.className} />

@@ -1,5 +1,6 @@
 import { getAllPosts, getPostData } from '@/lib/posts';
 import { notFound } from 'next/navigation';
+import { Sidebar } from '@/components/Sidebar';
 
 type Props = {
     params: Promise<{
@@ -21,27 +22,31 @@ export default async function PostPage({ params }: Props) {
         const post = await getPostData(slug);
 
         return (
-            <main className="max-w-2xl mx-auto p-4">
-                <h1 className="text-3xl text-gray-700 font-bold mb-2">{post.title}</h1>
-                <p className="text-sm text-gray-500 mb-6">{post.date}</p>
+            <div className="max-w-6xl mx-auto px-4 md:px-8 py-8 flex items-start gap-6">
+                <main className="flex-1 min-w-0">
+                    <h1 className="text-3xl text-gray-700 font-bold mb-2">{post.title}</h1>
+                    <p className="text-sm text-gray-500 mb-4">{post.date}</p>
 
-                {post.tags && post.tags.length > 0 && (
-                    <div className="mb-4">
-                        {post.tags.map((tag) => (
-                            <span key={tag} className="tag-badge">
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
-                )}
+                    {post.tags && post.tags.length > 0 && (
+                        <div className="mb-6">
+                            {post.tags.map((tag) => (
+                                <span key={tag} className="tag-badge">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
 
-                <article className="prose"
-                    dangerouslySetInnerHTML={{ __html: post.contentHtml }}>
-                </article>
-            </main >
+                    <article
+                        className="prose max-w-none"
+                        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+                    />
+                </main>
+                <Sidebar />
+            </div>
         );
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-        notFound(); // 例外が出たら404に
+        notFound();
     }
 }
