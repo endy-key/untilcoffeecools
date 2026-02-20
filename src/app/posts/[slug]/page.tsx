@@ -1,6 +1,7 @@
 import { getAllPosts, getPostData } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import { Sidebar } from '@/components/Sidebar';
+import { PostContent } from '@/components/PostContent';
 
 type Props = {
     params: Promise<{
@@ -37,10 +38,7 @@ export default async function PostPage({ params }: Props) {
                         </div>
                     )}
 
-                    <article
-                        className="prose max-w-none"
-                        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-                    />
+                    <PostContent contentHtml={post.contentHtml} />
                 </main>
                 <Sidebar />
             </div>
