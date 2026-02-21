@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, tagToSlug } from '@/lib/posts';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -6,17 +6,22 @@ import { Sidebar } from '@/components/Sidebar';
 
 export async function generateStaticParams() {
     const posts = await getAllPosts();
+    // 重複を排除した全タグをスラグ化してパラメータを生成
+    // encodeURIComponentではなくtagToSlugを使い、S3キーとURLのミスマッチを防ぐ
     const tags = new Set(posts.flatMap((p) => p.tags ?? []));
-    return Array.from(tags).map((tag) => ({ tag: encodeURIComponent(tag) }));
+    return Array.from(tags).map((tag) => ({ tag: tagToSlug(tag) }));
 }
 
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
-    const { tag } = await params;
-    const decodedTag = decodeURIComponent(tag);
+    const { tag: tagSlug } = await params;
 
     const allPosts = await getAllPosts();
+    // スラグから元のタグ名を逆引きする（表示・フィルタリングに使用）
+    const allTags = [...new Set(allPosts.flatMap((p) => p.tags ?? []))];
+    const originalTag = allTags.find((t) => tagToSlug(t) === tagSlug) ?? tagSlug;
+
     const filtered = allPosts
-        .filter((p) => p.tags?.includes(decodedTag))
+        .filter((p) => p.tags?.includes(originalTag))
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     if (filtered.length === 0) notFound();
@@ -26,7 +31,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
             <main className="flex-1 min-w-0">
                 <h1 className="text-2xl font-bold mb-8 text-gray-600 flex items-center gap-3">
                     <span className="inline-block w-1 h-6 bg-amber-700 rounded-full" aria-hidden="true" />
-                    <span className="text-amber-700">#{decodedTag}</span>
+                    <span className="text-amber-700">#{originalTag}</span>
                     <span className="text-base font-normal text-gray-400">{filtered.length}件</span>
                 </h1>
 
@@ -67,7 +72,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
                                                 {post.tags.map((t) => (
                                                     <span
                                                         key={t}
-                                                        className={`tag-badge ${t === decodedTag ? 'bg-amber-100 text-amber-800' : ''}`}
+                                                        className={`tag-badge ${t === originalTag ? 'bg-amber-100 text-amber-800' : ''}`}
                                                     >
                                                         {t}
                                                     </span>

@@ -9,6 +9,20 @@ import rehypeStringify from 'rehype-stringify';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
+/**
+ * タグ名をURL-safeなスラグに変換する
+ * 例: "Next.js" → "next-js", "Dynamic Routing" → "dynamic-routing"
+ * ドットとスペースをハイフンに置換し、CloudFrontのファイル拡張子誤認を防ぐ
+ */
+export function tagToSlug(tag: string): string {
+    return tag
+        .toLowerCase()              // 小文字化
+        .replace(/[.\s]+/g, '-')    // ドット・スペースをハイフンに変換
+        .replace(/[^a-z0-9-]/g, '') // 英数字とハイフン以外を除去
+        .replace(/-+/g, '-')        // 連続ハイフンを1つに集約
+        .replace(/^-|-$/g, '');     // 先頭・末尾のハイフンを除去
+}
+
 export type PostMeta = {
     slug: string;
     title: string;

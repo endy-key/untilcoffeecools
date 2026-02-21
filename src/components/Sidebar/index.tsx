@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, tagToSlug } from '@/lib/posts';
 import { ProfileCard } from '@/components/ProfileCard';
 import Link from 'next/link';
 
@@ -29,7 +29,7 @@ export async function Sidebar() {
                             {sortedTags.map(([tag, count]) => (
                                 <Link
                                     key={tag}
-                                    href={`/tags/${encodeURIComponent(tag)}`}
+                                    href={`/tags/${tagToSlug(tag)}`}
                                     className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-medium hover:bg-amber-100 hover:text-amber-800 transition-colors"
                                 >
                                     {tag}
