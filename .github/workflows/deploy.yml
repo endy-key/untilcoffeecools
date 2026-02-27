@@ -25,6 +25,7 @@ jobs:
         run:
             echo "NEXT_PUBLIC_GTM_ID=${{secrets.NEXT_PUBLIC_GTM_ID}}" > .env.production
             echo "NEXT_PUBLIC_CLARITY_ID=${{secrets.NEXT_PUBLIC_CLARITY_ID}}" >> .env.production
+            echo "NEXT_PUBLIC_SITE_URL=${{secrets.NEXT_PUBLIC_SITE_URL}}" >> .env.production
 
       - name: Build Next.js app
         run: npm run build

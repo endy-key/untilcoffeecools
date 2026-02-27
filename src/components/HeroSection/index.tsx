@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { PlainHomeSvg } from '@/components/Animation/PlainHomeSvg';
+import { siteConfig } from '@/config/site';
 
 interface Particle {
     id: number;
@@ -67,7 +68,7 @@ export function HeroSection() {
                 <div className="hero-logo">
                     <PlainHomeSvg />
                 </div>
-                <p className="hero-tagline">Pause and explore.</p>
+                <p className="hero-tagline">{siteConfig.tagline}</p>
             </div>
 
             {/* Bottom gradient fade to page background */}

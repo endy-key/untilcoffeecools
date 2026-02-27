@@ -3,6 +3,31 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Sidebar } from '@/components/Sidebar';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
+
+/**
+ * タグページの OGP メタデータを生成する。
+ * スラグから元のタグ名を逆引きしてタイトル・説明文を組み立てる。
+ */
+export async function generateMetadata(
+    { params }: { params: Promise<{ tag: string }> }
+): Promise<Metadata> {
+    const { tag: tagSlug } = await params;
+    const allPosts = await getAllPosts();
+    const allTags = [...new Set(allPosts.flatMap((p) => p.tags ?? []))];
+    const originalTag = allTags.find((t) => tagToSlug(t) === tagSlug) ?? tagSlug;
+
+    return {
+        title: `#${originalTag}`,
+        description: `「${originalTag}」タグの記事一覧`,
+        openGraph: {
+            title: `#${originalTag} | ${siteConfig.name}`,
+            description: `「${originalTag}」タグの記事一覧`,
+            images: [{ url: siteConfig.defaultOgImage, alt: siteConfig.name }],
+        },
+    };
+}
 
 export async function generateStaticParams() {
     const posts = await getAllPosts();
