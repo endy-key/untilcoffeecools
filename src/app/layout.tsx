@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { GtmScript } from "@/components/Gtm/GtmScript";
 import ClarityScript from "@/components/Clarity/ClarityScript";
 import { Caveat, Noto_Sans_JP } from "next/font/google";
+import { siteConfig } from "@/config/site";
 
 const caveat = Caveat({
   subsets: ['latin'], // 必要に応じてサブセットを指定
@@ -22,8 +23,29 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "until coffee cools",
-  description: "コーヒーが冷めるまで",
+  /**
+   * metadataBase を設定することで、openGraph.images などに指定した
+   * 相対パス（例: "/heroImage.jpg"）を絶対 URL に自動解決してくれる。
+   * NEXT_PUBLIC_SITE_URL 環境変数がなければ localhost にフォールバック。
+   */
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ),
+  title: {
+    /** 各ページは "%s | until coffee cools" 形式になる */
+    template: `%s | ${siteConfig.name}`,
+    default: siteConfig.name,
+  },
+  description: siteConfig.description,
+  openGraph: {
+    siteName: siteConfig.name,
+    locale: "ja_JP",
+    type: "website",
+    images: [{ url: siteConfig.defaultOgImage, alt: siteConfig.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -32,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang={siteConfig.lang}>
       <head>
         <GtmScript />
         <ClarityScript />

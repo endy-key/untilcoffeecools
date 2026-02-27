@@ -1,4 +1,4 @@
 // lib/clarity.ts
-export const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID ?? "";
+export { isProduction } from "@/config/site";
 
-export const isProduction = process.env.NODE_ENV === "production";
+export const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID ?? "";

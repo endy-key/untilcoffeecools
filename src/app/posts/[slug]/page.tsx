@@ -2,12 +2,49 @@ import { getAllPosts, getPostData } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import { Sidebar } from '@/components/Sidebar';
 import { PostContent } from '@/components/PostContent';
+import { siteConfig } from '@/config/site';
+import type { Metadata } from 'next';
 
 type Props = {
     params: Promise<{
         slug: string;
     }>;
 };
+
+/**
+ * 記事ごとの OGP メタデータを生成する。
+ * getPostData（Markdown 処理あり）は重いため、frontmatter のみ読む
+ * getAllPosts を使ってサムネイルや excerpt を取得する。
+ */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { slug } = await params;
+    const posts = await getAllPosts();
+    const post = posts.find((p) => p.slug === slug);
+
+    // 存在しないスラグは layout のデフォルト metadata にフォールバック
+    if (!post) return {};
+
+    // サムネイルがあればそれを OGP 画像に、なければデフォルト画像を使う
+    const ogImage = post.thumbnail ?? siteConfig.defaultOgImage;
+
+    return {
+        title: post.title,
+        description: post.excerpt,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: "article",
+            publishedTime: post.date,
+            tags: post.tags,
+            images: [{ url: ogImage, alt: post.title }],
+        },
+        twitter: {
+            title: post.title,
+            description: post.excerpt,
+            images: [ogImage],
+        },
+    };
+}
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
     const posts = await getAllPosts();

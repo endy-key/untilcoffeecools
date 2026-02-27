@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { siteConfig } from '@/config/site';
 
 function HomeIcon() {
     return (
@@ -44,7 +45,7 @@ export function Header({ className }: { className: string }) {
                     href="/"
                     className={`text-2xl font-bold text-amber-700 hover:text-amber-600 transition-colors tracking-wider ${className}`}
                 >
-                    until coffee cools
+                    {siteConfig.name}
                 </Link>
 
                 {/* Navigation */}
