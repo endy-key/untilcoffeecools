@@ -28,7 +28,7 @@ export default async function PostsPage() {
                                                 src={post.thumbnail}
                                                 alt={post.title}
                                                 fill
-                                                className="object-cover"
+                                                className="object-contain"
                                                 sizes="(max-width: 640px) 100vw, 50vw"
                                             />
                                         </div>

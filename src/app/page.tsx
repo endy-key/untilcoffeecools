@@ -36,7 +36,7 @@ export default async function Home() {
                                         src={post.thumbnail}
                                         alt={post.title}
                                         fill
-                                        className="object-cover"
+                                        className="object-contain"
                                         sizes="(max-width: 640px) 128px, 176px"
                                     />
                                 </div>
