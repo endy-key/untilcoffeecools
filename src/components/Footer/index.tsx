@@ -4,17 +4,29 @@ import { siteConfig } from '@/config/site';
 
 export function Footer({ className }: { className: string }) {
     return (
-        <footer className={`p-6 text-center text-gray-500 ${className} flex items-center justify-center`}> {/* flex-colを削除し、横並びにして中央揃え */}
-            <div> {/* mb-2を削除 */}
-                &copy; {new Date().getFullYear()} {siteConfig.copyrightName}
+        <footer className={`px-4 py-6 text-center text-gray-500 ${className}`}>
+            {/* フッターリンク群 */}
+            <div className="flex items-center justify-center gap-4 text-xs mb-3">
+                <Link href="/about" className="hover:text-amber-700 transition-colors">
+                    About
+                </Link>
+                <Link href="/contact" className="hover:text-amber-700 transition-colors">
+                    Contact
+                </Link>
+                <Link href="/privacy-policy" className="hover:text-amber-700 transition-colors">
+                    Privacy Policy
+                </Link>
             </div>
-            <div className="ml-4"> {/* 左にマージンを追加してコピーライトとの間にスペースを作る */}
+
+            {/* コピーライト + GitHub アイコン */}
+            <div className="flex items-center justify-center gap-4">
+                <span>&copy; {new Date().getFullYear()} {siteConfig.copyrightName}</span>
                 <Link href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" title="GitHub Repository">
                     <Image
-                        src="/github-mark.svg" // publicディレクトリからのパス
+                        src="/github-mark.svg"
                         alt="GitHub Icon"
-                        width={24} // アイコンの適切なサイズに調整してください
-                        height={24} // アイコンの適切なサイズに調整してください
+                        width={20}
+                        height={20}
                         className="inline-block hover:opacity-75 transition-opacity"
                     />
                 </Link>

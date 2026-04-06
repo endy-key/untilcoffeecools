@@ -1,0 +1,2 @@
+# テキストファイルの改行コードをCRLFに統一（Windows環境）
+* text=auto eol=crlf

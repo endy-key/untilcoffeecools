@@ -58,6 +58,12 @@ export default function RootLayout({
       <head>
         <GtmScript />
         <ClarityScript />
+        {/* Google AdSense */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9101239248699291"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={notoSansJP.className}>
         {/* ページ全体のコンテナを縦方向のフレックスコンテナに変更 */}
