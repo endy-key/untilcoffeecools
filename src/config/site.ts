@@ -17,7 +17,7 @@ export const siteConfig = {
   copyrightName: "untilcoffeecools",
 
   /** ヒーローセクションのキャッチコピー */
-  tagline: "Pause and explore.",
+  tagline: "雑多な趣味ブログ",
 
   /** 著者プロフィール */
   author: {
