@@ -19,6 +19,9 @@ export const siteConfig = {
   /** ヒーローセクションのキャッチコピー */
   tagline: "雑多な趣味ブログ",
 
+  /** ホーム画面のヒーロー背景 */
+  heroImage: "/heroImage.jpg",
+
   /** 著者プロフィール */
   author: {
     /** 表示名 */
