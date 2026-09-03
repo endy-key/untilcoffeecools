@@ -28,9 +28,19 @@ function PlaygroundIcon() {
     );
 }
 
+// Coffee Mapの2軸マトリクスと記録点を、ナビゲーション用の小さな図形で表現します。
+function CoffeeMapIcon() {
+    return (
+        <svg viewBox="0 -960 960 960" fill="currentColor" className="w-full h-full">
+            <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80ZM280-600q-33 0-56.5-23.5T200-680q0-33 23.5-56.5T280-760q33 0 56.5 23.5T360-680q0 33-23.5 56.5T280-600Zm400 320q-33 0-56.5-23.5T600-360q0-33 23.5-56.5T680-440q33 0 56.5 23.5T760-360q0 33-23.5 56.5T680-280Z" />
+        </svg>
+    );
+}
+
 const NAV_ITEMS = [
     { href: '/',           label: 'Home',       Icon: HomeIcon,       exact: true  },
     { href: '/posts',      label: 'Articles',   Icon: ArticleIcon,    exact: false },
+    { href: '/coffee-map', label: 'Coffee Map', Icon: CoffeeMapIcon,  exact: false },
     { href: '/playground', label: 'Playground', Icon: PlaygroundIcon, exact: false },
 ] as const;
 
