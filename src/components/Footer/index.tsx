@@ -18,6 +18,10 @@ export function Footer({ className }: { className: string }) {
                 </Link>
             </div>
 
+            <p className="mx-auto mb-4 max-w-3xl font-sans text-sm leading-relaxed text-gray-700">
+                Amazonのアソシエイトとして、until coffee coolsは適格販売により収入を得ています。
+            </p>
+
             {/* コピーライト + GitHub アイコン */}
             <div className="flex items-center justify-center gap-4">
                 <span>&copy; {new Date().getFullYear()} {siteConfig.copyrightName}</span>
