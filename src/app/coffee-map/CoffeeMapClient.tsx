@@ -175,9 +175,9 @@ function SelectedCoffeeCard({ review }: { review: CoffeeReview }) {
                     />
                 </a>
             ) : (
-                <div className={styles.productImagePlaceholder} aria-label={`${review.name}の商品画像は未設定`}>
+                <div className={styles.productImagePlaceholder} aria-label={`${review.name}の購入先は未設定`}>
                     <span aria-hidden="true">☕</span>
-                    <span>画像未設定</span>
+                    <span>購入先未設定</span>
                 </div>
             )}
 
@@ -195,17 +195,6 @@ function SelectedCoffeeCard({ review }: { review: CoffeeReview }) {
                     <dd>{review.pricePer100gYen === null ? '未設定' : formatYen(review.pricePer100gYen)}</dd>
                 </div>
             </dl>
-
-            {review.purchaseUrl === null && (
-                <button
-                    type="button"
-                    className={styles.purchaseUnavailable}
-                    disabled
-                    aria-label={`${review.name}の購入先は未設定`}
-                >
-                    購入先 未設定
-                </button>
-            )}
 
             <div className={styles.axisSummary}>
                 <SevenStepScale
