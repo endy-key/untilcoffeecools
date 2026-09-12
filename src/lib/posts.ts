@@ -6,6 +6,8 @@ import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
+import rehypeRaw from 'rehype-raw';
+import { rehypeOptimizedImages } from './optimized-images';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
@@ -81,6 +83,8 @@ export async function getPostData(slug: string): Promise<PostData> {
     const processedContent = await remark()
         .use(remarkGfm)
         .use(remarkRehype, { allowDangerousHtml: true }) // remark AST を rehype AST に変換
+        .use(rehypeRaw) // 手書きのHTML画像も通常の画像と同じツリーとして扱います。
+        .use(rehypeOptimizedImages) // 表示用画像を軽量化し、拡大用には元URLを残します。
         .use(rehypeHighlight) // シンタックスハイライトを適用
         .use(rehypeStringify, { allowDangerousHtml: true }) // rehype AST を HTML 文字列に変換
         .process(matterResult.content);

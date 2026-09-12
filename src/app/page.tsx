@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { PostThumbnail } from '@/components/PostThumbnail';
 import { getAllPosts } from '@/lib/posts';
 import { HeroSection } from '@/components/HeroSection';
 import { Sidebar } from '@/components/Sidebar';
@@ -44,10 +44,9 @@ export default async function Home() {
                                 <Link href={`/posts/${post.slug}`} className="group flex min-h-36">
                                     {post.thumbnail && (
                                         <div className="home-post-image relative w-32 shrink-0 sm:w-44">
-                                            <Image
+                                            <PostThumbnail
                                                 src={post.thumbnail}
                                                 alt={post.title}
-                                                fill
                                                 className="object-contain transition-transform duration-500 ease-out group-hover:scale-105"
                                                 sizes="(max-width: 640px) 128px, 176px"
                                             />

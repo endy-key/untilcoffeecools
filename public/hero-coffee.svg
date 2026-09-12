@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="520" viewBox="0 0 640 520" fill="none">
+  <title>静かなコーヒーの時間</title>
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    <linearGradient id="coffee" x1="241" y1="168" x2="365" y2="313" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#725039"/>
+      <stop offset="1" stop-color="#392D25"/>
+    </linearGradient>
+  </defs>
+  <path fill="#DCE3D6" d="M0 0h640v520H0z"/>
+  <path fill="#E8EDE3" d="M0 0h273L0 292V0Zm361 0h103L0 493V381L361 0Z"/>
+  <path stroke="#C4CEBF" d="M0 444h640"/>
+  <ellipse cx="354" cy="303" rx="142" ry="125" fill="#65765D" opacity=".19" filter="url(#shadow)"/>
+  <circle cx="313" cy="262" r="146" fill="#EAE9DE"/>
+  <circle cx="313" cy="262" r="138" stroke="#F8F7EF" stroke-width="2"/>
+  <circle cx="313" cy="262" r="110" stroke="#D5D5C8" stroke-width="2"/>
+  <path d="M408 217h23c24 0 38 14 38 34s-14 34-38 34h-23" stroke="#C9CABC" stroke-width="23"/>
+  <path d="M407 211h23c24 0 38 14 38 34s-14 34-38 34h-23" stroke="#F8F7EF" stroke-width="20"/>
+  <circle cx="313" cy="250" r="106" fill="#D1D2C4"/>
+  <circle cx="310" cy="244" r="106" fill="#FAF9F1"/>
+  <circle cx="310" cy="244" r="89" fill="#B99A78"/>
+  <circle cx="310" cy="244" r="85" fill="url(#coffee)"/>
+  <path d="M240 229c7-32 29-53 58-57" stroke="#BD9870" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  <path d="M249 219c9-20 24-33 42-37" stroke="#DAC3A0" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+  <ellipse cx="352" cy="294" rx="13" ry="2" fill="#947356" opacity=".5"/>
+  <path d="m493 354 53 78" stroke="#BAC4B1" stroke-width="12" stroke-linecap="round"/>
+  <path d="m488 348 53 78" stroke="#F4F3E9" stroke-width="10" stroke-linecap="round"/>
+  <ellipse cx="480" cy="336" rx="12" ry="23" transform="rotate(-34 480 336)" fill="#F4F3E9"/>
+  <ellipse cx="479" cy="333" rx="8" ry="16" transform="rotate(-34 479 333)" fill="#DBDFD2"/>
+</svg>

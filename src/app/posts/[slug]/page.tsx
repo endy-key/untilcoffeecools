@@ -4,6 +4,7 @@ import { Sidebar } from '@/components/Sidebar';
 import { PostContent } from '@/components/PostContent';
 import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
+import { optimizedOgImage } from '@/lib/optimized-images';
 
 type Props = {
     params: Promise<{
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!post) return {};
 
     // サムネイルがあればそれを OGP 画像に、なければデフォルト画像を使う
-    const ogImage = post.thumbnail ?? siteConfig.defaultOgImage;
+    const ogImage = post.thumbnail ? optimizedOgImage(post.thumbnail) : siteConfig.defaultOgImage;
 
     return {
         title: post.title,
