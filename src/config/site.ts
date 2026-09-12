@@ -20,7 +20,7 @@ export const siteConfig = {
   tagline: "雑多な趣味ブログ",
 
   /** ホーム画面のヒーロー背景 */
-  heroImage: "/heroImage.jpg",
+  heroImage: "/hero-coffee.svg",
 
   /** 著者プロフィール */
   author: {

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "images:generate": "node scripts/generate-images.mjs",
+    "predev": "npm run images:generate",
+    "prebuild": "npm run images:generate",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -15,11 +18,13 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rehype-highlight": "^7.0.2",
+    "rehype-raw": "^7.0.0",
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
     "remark-rehype": "^11.1.2",
+    "sharp": "^0.33.5",
     "vivus": "^0.4.6"
   },
   "devDependencies": {

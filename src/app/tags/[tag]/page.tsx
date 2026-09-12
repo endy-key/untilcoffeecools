@@ -1,6 +1,6 @@
 import { getAllPosts, tagToSlug } from '@/lib/posts';
 import Link from 'next/link';
-import Image from 'next/image';
+import { PostThumbnail } from '@/components/PostThumbnail';
 import { notFound } from 'next/navigation';
 import { Sidebar } from '@/components/Sidebar';
 import { siteConfig } from '@/config/site';
@@ -67,12 +67,11 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
                                 <article className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 border border-gray-100 overflow-hidden h-full flex flex-col">
                                     {post.thumbnail ? (
                                         <div className="relative w-full aspect-video">
-                                            <Image
+                                            <PostThumbnail
                                                 src={post.thumbnail}
                                                 alt={post.title}
-                                                fill
                                                 className="object-contain"
-                                                sizes="(max-width: 640px) 100vw, 50vw"
+                                                sizes="(min-width: 1152px) 400px, (min-width: 1024px) calc((100vw - 352px) / 2), (min-width: 768px) calc((100vw - 88px) / 2), (min-width: 640px) calc((100vw - 56px) / 2), calc(100vw - 32px)"
                                             />
                                         </div>
                                     ) : (

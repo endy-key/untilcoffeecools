@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { ImageModal } from '@/components/ImageModal';
 
 type PostContentProps = {
@@ -26,8 +27,10 @@ export function PostContent({ contentHtml }: PostContentProps) {
         const target = e.target as HTMLElement;
         if (target.tagName === 'IMG') {
             const img = target as HTMLImageElement;
+            // リンク付き画像もページ遷移させず、クリック時だけ元画像を拡大表示します。
+            e.preventDefault();
             setModalImage({
-                src: img.src,
+                src: img.dataset.originalSrc || img.src,
                 alt: img.alt || '',
             });
         }
@@ -43,12 +46,14 @@ export function PostContent({ contentHtml }: PostContentProps) {
             />
 
             {/* モーダルが開いている場合のみ表示 */}
-            {modalImage && (
+            {/* ページ遷移のfilterによる固定位置のずれを避け、画面全体へモーダルを表示します。 */}
+            {modalImage && createPortal(
                 <ImageModal
                     src={modalImage.src}
                     alt={modalImage.alt}
                     onClose={() => setModalImage(null)}
-                />
+                />,
+                document.body
             )}
         </>
     );
