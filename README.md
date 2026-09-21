@@ -21,4 +21,12 @@ It's part of my personal journey to explore frontend development, AWS hosting, a
 
 生成物は `public/_generated/images/` に保存され、Gitには追加しません。このフォルダを元画像置き場として使用しないでください。ファイル名には元画像と変換設定のハッシュが入るため、画像差し替え時にも新しいURLになります。ヒーロー・アバター・Coffee Mapの外部画像はこの処理の対象外です。
 
-検証コマンド: `node --test scripts/image-pipeline.test.mjs`、`npm run build`、`node scripts/verify-image-export.mjs`。
+検証コマンド: `npm test`、`npm run build`、`node scripts/verify-image-export.mjs`。
+
+## 記事と依存関係の安全性
+
+記事冒頭のfrontmatterはYAML形式のみ使用できます。通常の `---`、明示的な `---yaml`・`---yml` に対応し、JavaScript形式などはビルド時に拒否します。
+
+本文では画像・表・改行・コードブロックなどを使用できます。HTMLは安全化してから表示し、`script`・`iframe`・イベント属性・`javascript:` URLなどは除去します。画像最適化とコードの色付けは安全化後に適用します。
+
+`npm test` では危険な記事入力の拒否と通常の記事・画像処理を検証します。依存関係の更新時には `npm audit` も実行してください。Next.js 15が固定しているPostCSSは、`overrides` でプロジェクト側の修正版へ統一しています。Next.js更新時にはこの指定が引き続き必要か確認してください。
