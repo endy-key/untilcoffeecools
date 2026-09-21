@@ -1,13 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
-import { remark } from 'remark';
-import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
-import rehypeRaw from 'rehype-raw';
 import { rehypeOptimizedImages } from './optimized-images';
+import { createPostProcessor, parsePostMarkdown } from './post-markdown.mjs';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
@@ -77,16 +73,13 @@ export async function getPostData(slug: string): Promise<PostData> {
     const fullPath = path.join(postsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-    const matterResult = matter(fileContents);
+    const matterResult = parsePostMarkdown(fileContents);
     const frontmatter = matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[]; thumbnail?: string };
 
-    const processedContent = await remark()
-        .use(remarkGfm)
-        .use(remarkRehype, { allowDangerousHtml: true }) // remark AST を rehype AST に変換
-        .use(rehypeRaw) // 手書きのHTML画像も通常の画像と同じツリーとして扱います。
+    const processedContent = await createPostProcessor()
         .use(rehypeOptimizedImages) // 表示用画像を軽量化し、拡大用には元URLを残します。
         .use(rehypeHighlight) // シンタックスハイライトを適用
-        .use(rehypeStringify, { allowDangerousHtml: true }) // rehype AST を HTML 文字列に変換
+        .use(rehypeStringify) // 安全化したHTMLツリーを文字列へ変換します。
         .process(matterResult.content);
     const contentHtml = processedContent.toString();
     const excerpt = frontmatter.excerpt || generateExcerpt(matterResult.content);
@@ -106,7 +99,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
         const slug = fileName.replace(/\.md$/, '');
         const fullPath = path.join(postsDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
-        const matterResult = matter(fileContents);
+        const matterResult = parsePostMarkdown(fileContents);
         const frontmatter = matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[]; thumbnail?: string };
         const excerpt = frontmatter.excerpt || generateExcerpt(matterResult.content);
         return {

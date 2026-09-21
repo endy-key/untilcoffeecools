@@ -2,11 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import sharp from 'sharp';
-import matter from 'gray-matter';
-import { remark } from 'remark';
-import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
-import rehypeRaw from 'rehype-raw';
+import { createPostProcessor, parsePostMarkdown } from '../src/lib/post-markdown.mjs';
 
 const profiles = {
     thumbnail: { widths: [320, 640, 960], quality: 82, format: 'webp' },
@@ -41,7 +37,7 @@ export async function validateImagePath(publicDir, url) {
 
 // Markdownの参照形式・リンク内画像・HTML画像を、本文と同じパーサーで収集します。
 export async function collectBodyImages(content) {
-    const processor = remark().use(remarkGfm).use(remarkRehype, { allowDangerousHtml: true }).use(rehypeRaw);
+    const processor = createPostProcessor();
     const tree = await processor.run(processor.parse(content));
     const urls = [];
     function walk(node) {
@@ -61,7 +57,7 @@ export async function generateImages(root = process.cwd()) {
     const postsDir = path.join(root, 'content', 'posts');
     const usages = new Map();
     for (const name of (await fs.readdir(postsDir)).filter((name) => name.endsWith('.md')).sort()) {
-        const post = matter(await fs.readFile(path.join(postsDir, name), 'utf8'));
+        const post = parsePostMarkdown(await fs.readFile(path.join(postsDir, name), 'utf8'));
         const references = (await collectBodyImages(post.content)).map((url) => [url, 'body']);
         if (post.data.thumbnail) references.push([post.data.thumbnail, 'thumbnail'], [post.data.thumbnail, 'og']);
         for (const [url, profile] of references) {

@@ -9,23 +9,30 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.15.0",
     "gray-matter": "^4.0.3",
-    "next": "15.2.4",
+    "next": "15.5.25",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rehype-highlight": "^7.0.2",
     "rehype-raw": "^7.0.0",
+    "rehype-sanitize": "6.0.0",
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
     "remark-rehype": "^11.1.2",
-    "sharp": "^0.33.5",
+    "sharp": "0.35.4",
     "vivus": "^0.4.6"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "$postcss"
+    }
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -38,8 +45,8 @@
     "@types/vivus": "^0.4.7",
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
-    "eslint-config-next": "15.2.4",
-    "postcss": "^8.5.3",
+    "eslint-config-next": "15.5.25",
+    "postcss": "^8.5.28",
     "tailwindcss": "^4.1.6",
     "typescript": "^5"
   }
